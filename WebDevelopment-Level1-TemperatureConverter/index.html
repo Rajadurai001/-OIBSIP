@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ===== META ===== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Smart Temperature Converter — instantly convert between Celsius, Fahrenheit and Kelvin with a sleek, modern interface. Built for the Oasis Infobyte Internship 2026." />
+    <meta name="keywords" content="temperature converter, celsius, fahrenheit, kelvin, unit conversion, web app" />
+    <meta name="author" content="Rajad" />
+    <meta name="theme-color" content="#6C63FF" />
+
+    <title>Smart Temperature Converter | Oasis Infobyte Internship 2026</title>
+
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- ===== STYLESHEET ===== -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ===== ANIMATED BACKGROUND ORBS ===== -->
+    <div class="bg-orbs" aria-hidden="true">
+        <span class="orb orb--1"></span>
+        <span class="orb orb--2"></span>
+        <span class="orb orb--3"></span>
+        <span class="orb orb--4"></span>
+    </div>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <main class="app" id="app">
+
+        <!-- ===== HEADER ===== -->
+        <header class="app__header">
+            <div class="app__logo" aria-hidden="true">🌡️</div>
+            <h1 class="app__title">Smart Temperature Converter</h1>
+            <p class="app__subtitle">Instantly convert between Celsius, Fahrenheit &amp; Kelvin</p>
+        </header>
+
+        <!-- ===== CONVERTER CARD (Glassmorphism) ===== -->
+        <section class="card" aria-label="Temperature Converter">
+
+            <!-- Input Group -->
+            <div class="form-group">
+                <label for="tempInput" class="form-label">Enter Temperature</label>
+                <div class="input-row">
+                    <input
+                        type="number"
+                        id="tempInput"
+                        class="form-input"
+                        placeholder="e.g. 25"
+                        step="any"
+                        autocomplete="off"
+                        aria-describedby="errorMsg"
+                        required
+                    />
+                    <div class="select-wrapper">
+                        <select id="unitSelect" class="form-select" aria-label="Select temperature unit">
+                            <option value="celsius">°C — Celsius</option>
+                            <option value="fahrenheit">°F — Fahrenheit</option>
+                            <option value="kelvin">K — Kelvin</option>
+                        </select>
+                        <span class="select-arrow" aria-hidden="true">▾</span>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <p id="errorMsg" class="error-msg" role="alert" aria-live="polite"></p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-group">
+                <button type="button" id="convertBtn" class="btn btn--convert" aria-label="Convert temperature">
+                    <span class="btn__icon" aria-hidden="true">⚡</span>
+                    Convert
+                </button>
+                <button type="button" id="resetBtn" class="btn btn--reset" aria-label="Reset all fields">
+                    <span class="btn__icon" aria-hidden="true">🔄</span>
+                    Reset
+                </button>
+            </div>
+
+        </section>
+
+        <!-- ===== RESULTS SECTION ===== -->
+        <section class="results" id="results" aria-label="Conversion Results" hidden>
+            <h2 class="results__heading">Conversion Results</h2>
+
+            <div class="results__grid">
+                <!-- Celsius Card -->
+                <article class="result-card result-card--celsius" id="cardCelsius">
+                    <span class="result-card__icon" aria-hidden="true">🌡️</span>
+                    <h3 class="result-card__label">Celsius</h3>
+                    <p class="result-card__value" id="valCelsius">—</p>
+                    <span class="result-card__unit">°C</span>
+                </article>
+
+                <!-- Fahrenheit Card -->
+                <article class="result-card result-card--fahrenheit" id="cardFahrenheit">
+                    <span class="result-card__icon" aria-hidden="true">🔥</span>
+                    <h3 class="result-card__label">Fahrenheit</h3>
+                    <p class="result-card__value" id="valFahrenheit">—</p>
+                    <span class="result-card__unit">°F</span>
+                </article>
+
+                <!-- Kelvin Card -->
+                <article class="result-card result-card--kelvin" id="cardKelvin">
+                    <span class="result-card__icon" aria-hidden="true">❄️</span>
+                    <h3 class="result-card__label">Kelvin</h3>
+                    <p class="result-card__value" id="valKelvin">—</p>
+                    <span class="result-card__unit">K</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== FORMULA REFERENCE ===== -->
+        <section class="formulas" aria-label="Conversion Formulae">
+            <h2 class="formulas__heading">Conversion Formulae</h2>
+            <div class="formulas__grid">
+                <div class="formula-chip">°F = (°C × 9/5) + 32</div>
+                <div class="formula-chip">°C = (°F − 32) × 5/9</div>
+                <div class="formula-chip">K = °C + 273.15</div>
+                <div class="formula-chip">°C = K − 273.15</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>Crafted with ❤️ for <strong>Oasis Infobyte Internship 2026</strong> — Task 3</p>
+        <p class="footer__copy">&copy; 2026 Rajad. All rights reserved.</p>
+    </footer>
+
+    <!-- ===== SCRIPT ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
