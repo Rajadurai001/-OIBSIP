@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==================== META ==================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rajadurai — Full Stack MERN Developer, AI & Machine Learning Developer, and Python Developer. Explore my portfolio, projects, and skills." />
+  <meta name="keywords" content="Rajadurai, Portfolio, Full Stack Developer, MERN, AI, Machine Learning, Python, Web Developer" />
+  <meta name="author" content="Rajadurai" />
+  <meta name="theme-color" content="#0F172A" />
+
+  <!-- ==================== OPEN GRAPH ==================== -->
+  <meta property="og:title" content="Rajadurai — Developer Portfolio" />
+  <meta property="og:description" content="Full Stack MERN Developer | AI & Machine Learning Developer | Python Developer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/avatar.png" />
+
+  <title>Rajadurai — Developer Portfolio</title>
+
+  <!-- ==================== FONTS ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ==================== STYLESHEET ==================== -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ============================================================
+       SECTION 1 — STICKY NAVIGATION
+       ============================================================ -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Primary Navigation">
+      <!-- Logo / Brand -->
+      <a href="#home" class="nav__logo" aria-label="Go to homepage">
+        <span class="nav__logo-bracket">&lt;</span>Rajadurai<span class="nav__logo-bracket"> /&gt;</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav__list" id="nav-menu" role="menubar">
+        <li class="nav__item" role="none">
+          <a href="#home" class="nav__link active" role="menuitem">Home</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a href="#about" class="nav__link" role="menuitem">About</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a href="#skills" class="nav__link" role="menuitem">Skills</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a href="#projects" class="nav__link" role="menuitem">Projects</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a href="#contact" class="nav__link" role="menuitem">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         SECTION 2 — HERO
+         ============================================================ -->
+    <section class="hero section" id="home">
+      <!-- Animated background orbs -->
+      <div class="hero__bg-orb hero__bg-orb--1" aria-hidden="true"></div>
+      <div class="hero__bg-orb hero__bg-orb--2" aria-hidden="true"></div>
+      <div class="hero__bg-orb hero__bg-orb--3" aria-hidden="true"></div>
+
+      <div class="hero__container container">
+        <!-- Avatar -->
+        <div class="hero__avatar-wrapper reveal">
+          <div class="hero__avatar-glow" aria-hidden="true"></div>
+          <img
+            src="assets/images/avatar.png"
+            alt="Rajadurai — Full Stack MERN Developer"
+            class="hero__avatar"
+            width="280"
+            height="280"
+            loading="eager"
+          />
+          <div class="hero__avatar-ring" aria-hidden="true"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="hero__content reveal">
+          <p class="hero__greeting">Hello, I'm</p>
+          <h1 class="hero__name">Rajadurai</h1>
+          <p class="hero__role">
+            <span class="hero__role-text" id="typed-role">Full Stack MERN Developer</span>
+            <span class="hero__cursor" aria-hidden="true">|</span>
+          </p>
+          <p class="hero__intro">
+            Crafting AI-powered applications, scalable web solutions, and innovative software products
+            — while continuously mastering modern technologies.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Contact Me
+            </a>
+            <a href="#" class="btn btn--outline" aria-label="Download Resume (PDF)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="hero__socials">
+            <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="GitHub Profile">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="LinkedIn Profile">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="hero__scroll-indicator" aria-label="Scroll to About section">
+        <span class="hero__scroll-mouse">
+          <span class="hero__scroll-dot"></span>
+        </span>
+        <span class="hero__scroll-text">Scroll Down</span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — ABOUT ME
+         ============================================================ -->
+    <section class="about section" id="about">
+      <div class="container">
+        <h2 class="section__title reveal">
+          <span class="section__title-accent">About</span> Me
+        </h2>
+        <p class="section__subtitle reveal">Get to know me better</p>
+
+        <div class="about__content">
+          <div class="about__text reveal">
+            <p>
+              I'm <strong>Rajadurai</strong>, a passionate software developer driven by an insatiable curiosity
+              for technology and innovation. My journey in software development began with a deep fascination for
+              how code can transform ideas into impactful digital experiences. I specialize in the
+              <strong>MERN stack</strong> (MongoDB, Express.js, React, Node.js), building end-to-end web applications
+              that are performant, scalable, and user-centric. Every project I undertake is an opportunity to push
+              boundaries and deliver solutions that truly make a difference.
+            </p>
+            <p>
+              Beyond web development, I'm deeply invested in <strong>Artificial Intelligence and Machine Learning</strong>.
+              From Natural Language Processing to Computer Vision, I explore how intelligent systems can solve
+              real-world problems. I believe that the convergence of AI and modern web technologies is the key
+              to building the next generation of software — and I strive to be at the forefront of that revolution.
+              My projects reflect this vision, blending smart algorithms with elegant interfaces.
+            </p>
+            <p>
+              I'm a firm believer in <strong>continuous learning</strong> and <strong>open-source contribution</strong>.
+              Whether it's diving into a new framework, contributing to community projects on GitHub, or
+              tackling complex algorithmic challenges, I'm always expanding my skill set. I approach every
+              problem with analytical thinking and creative problem-solving, aiming to write clean, maintainable
+              code that stands the test of time. Let's connect and build something extraordinary together.
+            </p>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="about__stats reveal">
+            <div class="about__stat-card glass-card">
+              <span class="about__stat-number">10+</span>
+              <span class="about__stat-label">Projects Built</span>
+            </div>
+            <div class="about__stat-card glass-card">
+              <span class="about__stat-number">6+</span>
+              <span class="about__stat-label">Technologies</span>
+            </div>
+            <div class="about__stat-card glass-card">
+              <span class="about__stat-number">∞</span>
+              <span class="about__stat-label">Lines of Code</span>
+            </div>
+            <div class="about__stat-card glass-card">
+              <span class="about__stat-number">24/7</span>
+              <span class="about__stat-label">Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4 — SKILLS
+         ============================================================ -->
+    <section class="skills section" id="skills">
+      <div class="container">
+        <h2 class="section__title reveal">
+          My <span class="section__title-accent">Skills</span>
+        </h2>
+        <p class="section__subtitle reveal">Technologies I work with</p>
+
+        <div class="skills__grid">
+
+          <!-- Frontend -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3 class="skills__category-title">Frontend</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">HTML5</span>
+              <span class="skills__tag">CSS3</span>
+              <span class="skills__tag">JavaScript</span>
+              <span class="skills__tag">React</span>
+              <span class="skills__tag">Tailwind CSS</span>
+              <span class="skills__tag">Bootstrap</span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+              </div>
+              <h3 class="skills__category-title">Backend</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">Node.js</span>
+              <span class="skills__tag">Express.js</span>
+            </div>
+          </div>
+
+          <!-- Database -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <h3 class="skills__category-title">Database</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">MongoDB</span>
+              <span class="skills__tag">MySQL</span>
+            </div>
+          </div>
+
+          <!-- Programming -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              </div>
+              <h3 class="skills__category-title">Programming</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">Python</span>
+              <span class="skills__tag">C</span>
+              <span class="skills__tag">Java</span>
+            </div>
+          </div>
+
+          <!-- AI / ML -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.93"/><path d="M8 6a4 4 0 0 1 8 0"/><path d="M12 18v4"/><path d="M8 22h8"/><circle cx="12" cy="14" r="4"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+              </div>
+              <h3 class="skills__category-title">AI / ML</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">Machine Learning</span>
+              <span class="skills__tag">Deep Learning</span>
+              <span class="skills__tag">NLP</span>
+              <span class="skills__tag">Computer Vision</span>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="skills__category glass-card reveal">
+            <div class="skills__category-header">
+              <div class="skills__category-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+              <h3 class="skills__category-title">Tools</h3>
+            </div>
+            <div class="skills__tags">
+              <span class="skills__tag">Git</span>
+              <span class="skills__tag">GitHub</span>
+              <span class="skills__tag">VS Code</span>
+              <span class="skills__tag">Postman</span>
+              <span class="skills__tag">Figma</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5 — PROJECTS
+         ============================================================ -->
+    <section class="projects section" id="projects">
+      <div class="container">
+        <h2 class="section__title reveal">
+          My <span class="section__title-accent">Projects</span>
+        </h2>
+        <p class="section__subtitle reveal">Things I've built</p>
+
+        <div class="projects__grid">
+
+          <!-- Project 1 — AI Chat Assistant -->
+          <article class="project-card glass-card reveal" id="project-ai-chat">
+            <div class="project-card__image-wrapper">
+              <img
+                src="assets/images/project-ai-chat.png"
+                alt="AI Chat Assistant — intelligent conversational interface"
+                class="project-card__image"
+                loading="lazy"
+                width="600"
+                height="340"
+              />
+              <div class="project-card__overlay">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary" aria-label="View AI Chat Assistant source on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="btn btn--small btn--accent" aria-label="View AI Chat Assistant live demo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">AI Chat Assistant</h3>
+              <p class="project-card__description">
+                An intelligent conversational assistant powered by Natural Language Processing. Features real-time
+                responses, context-aware dialogue, and a sleek dark-themed interface for seamless user interactions.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">NLP</span>
+                <span class="project-card__tag">React</span>
+                <span class="project-card__tag">Node.js</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 — Portfolio Website -->
+          <article class="project-card glass-card reveal" id="project-portfolio">
+            <div class="project-card__image-wrapper">
+              <img
+                src="assets/images/project-portfolio.png"
+                alt="Personal Portfolio Website — modern dark theme design"
+                class="project-card__image"
+                loading="lazy"
+                width="600"
+                height="340"
+              />
+              <div class="project-card__overlay">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary" aria-label="View Portfolio Website source on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="btn btn--small btn--accent" aria-label="View Portfolio Website live demo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Portfolio Website</h3>
+              <p class="project-card__description">
+                A premium personal portfolio featuring glassmorphism design, smooth animations, and a fully
+                responsive layout. Built with semantic HTML5, modern CSS3, and vanilla JavaScript.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">HTML5</span>
+                <span class="project-card__tag">CSS3</span>
+                <span class="project-card__tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 — E-Commerce Website -->
+          <article class="project-card glass-card reveal" id="project-ecommerce">
+            <div class="project-card__image-wrapper">
+              <img
+                src="assets/images/project-ecommerce.png"
+                alt="E-Commerce Website — modern shopping platform"
+                class="project-card__image"
+                loading="lazy"
+                width="600"
+                height="340"
+              />
+              <div class="project-card__overlay">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary" aria-label="View E-Commerce Website source on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="btn btn--small btn--accent" aria-label="View E-Commerce Website live demo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">E-Commerce Website</h3>
+              <p class="project-card__description">
+                A full-stack e-commerce platform with product management, shopping cart, user authentication,
+                and payment integration. Built on the MERN stack with a responsive, mobile-first design.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">React</span>
+                <span class="project-card__tag">Node.js</span>
+                <span class="project-card__tag">MongoDB</span>
+                <span class="project-card__tag">Express</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 — Smart Attendance System -->
+          <article class="project-card glass-card reveal" id="project-attendance">
+            <div class="project-card__image-wrapper">
+              <img
+                src="assets/images/project-attendance.png"
+                alt="Smart Attendance System — AI-powered face recognition"
+                class="project-card__image"
+                loading="lazy"
+                width="600"
+                height="340"
+              />
+              <div class="project-card__overlay">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="btn btn--small btn--primary" aria-label="View Smart Attendance System source on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="btn btn--small btn--accent" aria-label="View Smart Attendance System live demo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Smart Attendance System</h3>
+              <p class="project-card__description">
+                An AI-driven attendance management system using facial recognition and Computer Vision.
+                Features real-time face detection, automated logging, and an analytics dashboard.
+              </p>
+              <div class="project-card__tags">
+                <span class="project-card__tag">Python</span>
+                <span class="project-card__tag">OpenCV</span>
+                <span class="project-card__tag">Deep Learning</span>
+                <span class="project-card__tag">Flask</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6 — CONTACT
+         ============================================================ -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <h2 class="section__title reveal">
+          Get In <span class="section__title-accent">Touch</span>
+        </h2>
+        <p class="section__subtitle reveal">Let's work together</p>
+
+        <div class="contact__content">
+
+          <!-- Contact Info Cards -->
+          <div class="contact__info reveal">
+
+            <div class="contact__card glass-card">
+              <div class="contact__card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <h3 class="contact__card-title">Full Name</h3>
+              <p class="contact__card-text">Rajadurai</p>
+            </div>
+
+            <div class="contact__card glass-card">
+              <div class="contact__card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <h3 class="contact__card-title">Email</h3>
+              <p class="contact__card-text">
+                <a href="mailto:rajadurai@example.com" class="contact__link">rajadurai@example.com</a>
+              </p>
+            </div>
+
+            <div class="contact__card glass-card">
+              <div class="contact__card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <h3 class="contact__card-title">GitHub</h3>
+              <p class="contact__card-text">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="contact__link">github.com/Rajadurai001</a>
+              </p>
+            </div>
+
+            <div class="contact__card glass-card">
+              <div class="contact__card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <h3 class="contact__card-title">LinkedIn</h3>
+              <p class="contact__card-text">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="contact__link">linkedin.com/in/rajadurai</a>
+              </p>
+            </div>
+
+            <div class="contact__card glass-card">
+              <div class="contact__card-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <h3 class="contact__card-title">Location</h3>
+              <p class="contact__card-text">India</p>
+            </div>
+
+          </div>
+
+          <!-- Contact CTA -->
+          <div class="contact__cta reveal">
+            <div class="contact__cta-card glass-card">
+              <h3 class="contact__cta-title">Let's Build Something Amazing</h3>
+              <p class="contact__cta-text">
+                I'm always open to discussing new projects, creative ideas, or opportunities
+                to be part of your vision. Feel free to reach out!
+              </p>
+              <div class="contact__cta-socials">
+                <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="contact__social-btn" aria-label="GitHub">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="contact__social-btn" aria-label="LinkedIn">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="mailto:rajadurai@example.com" class="contact__social-btn" aria-label="Email">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       SECTION 7 — FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__container">
+      <p class="footer__copy">
+        &copy; 2026 <strong>Rajadurai</strong>. All rights reserved.
+      </p>
+      <p class="footer__built">
+        Built with
+        <span class="footer__heart" aria-label="love">&#10084;</span>
+        using HTML &amp; CSS
+      </p>
+      <div class="footer__socials">
+        <a href="https://github.com/Rajadurai001" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script src="script.js"></script>
+</body>
+</html>
