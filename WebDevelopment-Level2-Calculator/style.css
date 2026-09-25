@@ -1,0 +1,948 @@
+/* ============================================
+   Oasis Infobyte Internship 2026
+   Level 2 – Task 1: Calculator
+   
+   Modern Glassmorphism Calculator Stylesheet
+   Technologies: CSS3 Variables, Grid, Flexbox,
+                 Glassmorphism, Media Queries
+   ============================================ */
+
+/* ==========================================
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ========================================== */
+:root {
+  /* Color Palette */
+  --color-primary: #6C63FF;
+  --color-primary-light: #8B83FF;
+  --color-primary-dark: #5A52E0;
+  --color-secondary: #4F46E5;
+  --color-accent: #06B6D4;
+  --color-accent-light: #22D3EE;
+  --color-background: #0F172A;
+  --color-background-alt: #0B1120;
+  --color-card: #1E293B;
+  --color-card-light: #334155;
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+  --color-error-light: #F87171;
+  --color-warning: #F59E0B;
+  --color-text: #FFFFFF;
+  --color-text-muted: #94A3B8;
+  --color-text-dim: #64748B;
+
+  /* Glass Effects */
+  --glass-bg: rgba(30, 41, 59, 0.65);
+  --glass-bg-light: rgba(30, 41, 59, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-blur: 24px;
+
+  /* Typography */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 50%;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --shadow-glow-primary: 0 0 20px rgba(108, 99, 255, 0.3);
+  --shadow-glow-accent: 0 0 20px rgba(6, 182, 212, 0.3);
+  --shadow-glow-error: 0 0 20px rgba(239, 68, 68, 0.3);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Calculator Dimensions */
+  --calc-width: 380px;
+  --calc-btn-size: 72px;
+  --calc-gap: 12px;
+}
+
+
+/* ==========================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default button styles */
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  background: transparent;
+  color: inherit;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+
+/* ==========================================
+   3. ANIMATED BACKGROUND ORBS
+   ========================================== */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--color-primary), transparent 70%);
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--color-accent), transparent 70%);
+  bottom: -5%;
+  right: -5%;
+  animation-delay: -7s;
+  animation-duration: 25s;
+}
+
+.orb-3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, var(--color-secondary), transparent 70%);
+  top: 50%;
+  left: 60%;
+  animation-delay: -14s;
+  animation-duration: 22s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%      { transform: translate(40px, -30px) scale(1.05); }
+  50%      { transform: translate(-20px, 50px) scale(0.95); }
+  75%      { transform: translate(30px, 20px) scale(1.02); }
+}
+
+
+/* ==========================================
+   4. SITE HEADER
+   ========================================== */
+.site-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg) var(--space-md);
+}
+
+.site-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-icon {
+  font-size: 1.8rem;
+  -webkit-text-fill-color: initial;
+}
+
+.site-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+
+/* ==========================================
+   5. MAIN CONTENT & WRAPPER
+   ========================================== */
+.main-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--space-lg) var(--space-lg);
+  width: 100%;
+}
+
+.calculator-wrapper {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* ==========================================
+   6. CALCULATOR CARD (GLASSMORPHISM)
+   ========================================== */
+.calculator {
+  width: var(--calc-width);
+  max-width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition-slow);
+}
+
+/* Subtle top highlight for depth */
+.calculator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+.calculator:hover {
+  box-shadow: var(--shadow-xl), var(--shadow-glow-primary);
+}
+
+
+/* ==========================================
+   7. DISPLAY AREA
+   ========================================== */
+.display {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-lg);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Inner glow effect on the display */
+.display::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+  opacity: 0.5;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* Expression line (upper, smaller) */
+.display-expression {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  text-align: right;
+  width: 100%;
+  min-height: 1.4em;
+  word-break: break-all;
+  line-height: 1.4;
+  transition: font-size var(--transition-normal);
+}
+
+/* Result line (lower, larger) */
+.display-result {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: right;
+  width: 100%;
+  line-height: 1.2;
+  transition: font-size var(--transition-normal), color var(--transition-normal);
+  margin-top: var(--space-xs);
+}
+
+/* Dynamic font size classes for long expressions/results */
+.display-result.font-lg {
+  font-size: 2rem;
+}
+
+.display-result.font-md {
+  font-size: 1.6rem;
+}
+
+.display-result.font-sm {
+  font-size: 1.3rem;
+}
+
+.display-expression.font-sm {
+  font-size: 0.85rem;
+}
+
+/* Error state styling */
+.display-result.error {
+  color: var(--color-error-light);
+  font-size: 1.3rem;
+}
+
+
+/* ==========================================
+   8. KEYPAD (CSS GRID - MANDATORY)
+   ========================================== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--calc-gap);
+}
+
+
+/* ==========================================
+   9. BUTTON STYLES
+   ========================================== */
+.btn {
+  height: var(--calc-btn-size);
+  border-radius: var(--radius-md);
+  font-size: 1.35rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+  border: 1px solid transparent;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ripple effect overlay */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+/* Active press effect */
+.btn:active {
+  transform: scale(0.93);
+}
+
+/* Focus indicator for accessibility */
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-glow-accent);
+}
+
+/* --- Number Buttons --- */
+.btn-number {
+  background: rgba(51, 65, 85, 0.5);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.btn-number:hover {
+  background: rgba(71, 85, 105, 0.6);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Operator Buttons --- */
+.btn-operator {
+  background: rgba(108, 99, 255, 0.2);
+  color: var(--color-primary-light);
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  border-color: rgba(108, 99, 255, 0.15);
+}
+
+.btn-operator:hover {
+  background: rgba(108, 99, 255, 0.35);
+  border-color: rgba(108, 99, 255, 0.3);
+  box-shadow: 0 0 16px rgba(108, 99, 255, 0.2);
+  color: var(--color-text);
+}
+
+/* Active operator highlight */
+.btn-operator.active {
+  background: rgba(108, 99, 255, 0.45);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+  color: var(--color-text);
+}
+
+/* --- Function Buttons (C, ⌫, %, ±) --- */
+.btn-function {
+  background: rgba(100, 116, 139, 0.25);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  border-color: rgba(100, 116, 139, 0.15);
+}
+
+.btn-function:hover {
+  background: rgba(100, 116, 139, 0.4);
+  border-color: rgba(100, 116, 139, 0.3);
+  color: var(--color-text);
+}
+
+/* Special: Clear button red tint on hover */
+.btn-function[data-action="clear"]:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--color-error-light);
+  box-shadow: var(--shadow-glow-error);
+}
+
+/* --- Equals Button (Accent) --- */
+.btn-equals {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.25);
+}
+
+.btn-equals:hover {
+  box-shadow: 0 6px 24px rgba(6, 182, 212, 0.4), 0 0 20px rgba(108, 99, 255, 0.2);
+  filter: brightness(1.1);
+}
+
+.btn-equals:active {
+  transform: scale(0.93);
+  filter: brightness(0.95);
+}
+
+/* Button press animation */
+@keyframes btnPress {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.btn.pressed {
+  animation: btnPress 200ms ease;
+}
+
+
+/* ==========================================
+   10. HISTORY TOGGLE BUTTON
+   ========================================== */
+.history-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background: rgba(100, 116, 139, 0.15);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal),
+    border-color var(--transition-normal);
+}
+
+.history-toggle-btn:hover {
+  background: rgba(100, 116, 139, 0.25);
+  color: var(--color-text);
+  border-color: var(--glass-border-hover);
+}
+
+.history-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.history-toggle-btn.active {
+  background: rgba(108, 99, 255, 0.15);
+  border-color: rgba(108, 99, 255, 0.3);
+  color: var(--color-primary-light);
+}
+
+.history-icon {
+  font-size: 1rem;
+}
+
+
+/* ==========================================
+   11. HISTORY PANEL
+   ========================================== */
+.history-panel {
+  width: 280px;
+  max-height: 540px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+}
+
+.history-panel.visible {
+  display: flex;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Subtle top highlight */
+.history-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.history-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.history-clear-btn {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-dim);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.history-clear-btn:hover {
+  color: var(--color-error-light);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.history-clear-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Custom scrollbar for history */
+.history-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 4px;
+}
+
+.history-empty {
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: var(--space-xl) 0;
+  font-style: italic;
+}
+
+/* History Item */
+.history-item {
+  background: rgba(51, 65, 85, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+  animation: slideIn 300ms ease forwards;
+}
+
+.history-item:hover {
+  background: rgba(71, 85, 105, 0.4);
+  border-color: rgba(108, 99, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.history-item-expression {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.history-item-result {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-light);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==========================================
+   12. KEYBOARD HINT
+   ========================================== */
+.keyboard-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  padding: var(--space-sm) var(--space-lg);
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.hint-separator {
+  color: var(--color-text-dim);
+  opacity: 0.5;
+}
+
+
+/* ==========================================
+   13. FOOTER
+   ========================================== */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  margin-top: auto;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+  font-weight: 400;
+}
+
+.footer-highlight {
+  color: var(--color-primary-light);
+  font-weight: 500;
+}
+
+
+/* ==========================================
+   14. RESPONSIVE DESIGN (Media Queries)
+   ========================================== */
+
+/* Tablet & below: 768px */
+@media (max-width: 768px) {
+  .calculator-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .history-panel {
+    width: 100%;
+    max-width: var(--calc-width);
+    transform: translateY(10px);
+  }
+
+  .history-panel.visible {
+    transform: translateY(0);
+  }
+
+  .keyboard-hint {
+    display: none;
+  }
+
+  .site-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile: 480px */
+@media (max-width: 480px) {
+  :root {
+    --calc-width: 100%;
+    --calc-btn-size: 62px;
+    --calc-gap: 10px;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .site-header {
+    padding: var(--space-lg) var(--space-md) var(--space-sm);
+  }
+
+  .site-title {
+    font-size: 1.4rem;
+  }
+
+  .site-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .main-content {
+    padding: 0 var(--space-sm) var(--space-md);
+  }
+
+  .calculator {
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+  }
+
+  .display {
+    padding: var(--space-md) var(--space-lg);
+    min-height: 95px;
+  }
+
+  .display-result {
+    font-size: 2rem;
+  }
+
+  .display-expression {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-operator {
+    font-size: 1.35rem;
+  }
+
+  .btn-equals {
+    font-size: 1.4rem;
+  }
+
+  .history-panel {
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+  }
+}
+
+/* Small mobile: 360px */
+@media (max-width: 360px) {
+  :root {
+    --calc-btn-size: 54px;
+    --calc-gap: 8px;
+  }
+
+  .display-result {
+    font-size: 1.7rem;
+  }
+
+  .btn {
+    font-size: 1.1rem;
+  }
+}
+
+/* Desktop large: 1200px+ */
+@media (min-width: 1200px) {
+  .site-title {
+    font-size: 2.2rem;
+  }
+
+  .calculator {
+    padding: var(--space-xl);
+  }
+}
+
+
+/* ==========================================
+   15. UTILITY ANIMATIONS
+   ========================================== */
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.display.shake {
+  animation: shake 500ms ease;
+}
+
+/* Pulse animation for result display */
+@keyframes resultPulse {
+  0%   { opacity: 0.6; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.display-result.pulse {
+  animation: resultPulse 250ms ease forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ==========================================
+   16. ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .orb {
+    animation: none;
+    opacity: 0.2;
+  }
+}
+
+/* High contrast focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Skip to content for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

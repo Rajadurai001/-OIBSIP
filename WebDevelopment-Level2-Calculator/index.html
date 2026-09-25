@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================
+       Oasis Infobyte Internship 2026
+       Level 2 – Task 1: Calculator
+       Author: Rajad
+       ============================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium glassmorphism calculator web application built with HTML5, CSS3, and Vanilla JavaScript. Features BODMAS operator precedence, keyboard support, and calculation history.">
+  <meta name="keywords" content="calculator, glassmorphism, web app, JavaScript, BODMAS, Oasis Infobyte">
+  <meta name="author" content="Rajad">
+  <meta name="theme-color" content="#0F172A">
+
+  <title>Glassmorphism Calculator | Oasis Infobyte Internship 2026</title>
+
+  <!-- Google Fonts: Poppins (headings), Inter (body), JetBrains Mono (numbers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       DECORATIVE BACKGROUND ORBS
+       ========================================== -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ==========================================
+       HEADER
+       ========================================== -->
+  <header class="site-header">
+    <h1 class="site-title">
+      <span class="title-icon">🧮</span>
+      <span>Calculator</span>
+    </h1>
+    <p class="site-subtitle">Modern Glassmorphism Calculator</p>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main class="main-content">
+    <div class="calculator-wrapper">
+
+      <!-- ======================================
+           CALCULATOR CARD
+           ====================================== -->
+      <section class="calculator" role="application" aria-label="Calculator">
+
+        <!-- Display Area -->
+        <div class="display" aria-live="polite" aria-atomic="true">
+          <div class="display-expression" id="displayExpression" aria-label="Current expression"></div>
+          <div class="display-result" id="displayResult" aria-label="Result">0</div>
+        </div>
+
+        <!-- Keypad (CSS Grid Layout) -->
+        <div class="keypad" id="keypad" role="group" aria-label="Calculator keypad">
+
+          <!-- Row 1: Function keys + divide -->
+          <button class="btn btn-function" data-action="clear" aria-label="Clear all" title="Clear (Esc)">C</button>
+          <button class="btn btn-function" data-action="backspace" aria-label="Backspace" title="Backspace">⌫</button>
+          <button class="btn btn-function" data-action="percent" aria-label="Percentage" title="Percentage">%</button>
+          <button class="btn btn-operator" data-action="operator" data-value="÷" aria-label="Divide" title="Divide">÷</button>
+
+          <!-- Row 2: 7, 8, 9, × -->
+          <button class="btn btn-number" data-action="number" data-value="7" aria-label="7">7</button>
+          <button class="btn btn-number" data-action="number" data-value="8" aria-label="8">8</button>
+          <button class="btn btn-number" data-action="number" data-value="9" aria-label="9">9</button>
+          <button class="btn btn-operator" data-action="operator" data-value="×" aria-label="Multiply" title="Multiply">×</button>
+
+          <!-- Row 3: 4, 5, 6, − -->
+          <button class="btn btn-number" data-action="number" data-value="4" aria-label="4">4</button>
+          <button class="btn btn-number" data-action="number" data-value="5" aria-label="5">5</button>
+          <button class="btn btn-number" data-action="number" data-value="6" aria-label="6">6</button>
+          <button class="btn btn-operator" data-action="operator" data-value="−" aria-label="Subtract" title="Subtract">−</button>
+
+          <!-- Row 4: 1, 2, 3, + -->
+          <button class="btn btn-number" data-action="number" data-value="1" aria-label="1">1</button>
+          <button class="btn btn-number" data-action="number" data-value="2" aria-label="2">2</button>
+          <button class="btn btn-number" data-action="number" data-value="3" aria-label="3">3</button>
+          <button class="btn btn-operator" data-action="operator" data-value="+" aria-label="Add" title="Add">+</button>
+
+          <!-- Row 5: ±, 0, ., = -->
+          <button class="btn btn-function" data-action="negate" aria-label="Negate" title="Negate (±)">±</button>
+          <button class="btn btn-number" data-action="number" data-value="0" aria-label="0">0</button>
+          <button class="btn btn-number" data-action="decimal" aria-label="Decimal point" title="Decimal point">.</button>
+          <button class="btn btn-equals" data-action="equals" aria-label="Equals" title="Equals (Enter)">=</button>
+        </div>
+
+        <!-- History Toggle Button -->
+        <button class="history-toggle-btn" id="historyToggle" aria-label="Toggle calculation history" title="Calculation History">
+          <span class="history-icon">📋</span>
+          <span class="history-label">History</span>
+        </button>
+
+      </section>
+
+      <!-- ======================================
+           HISTORY PANEL
+           ====================================== -->
+      <aside class="history-panel" id="historyPanel" aria-label="Calculation history">
+        <div class="history-header">
+          <h2 class="history-title">History</h2>
+          <button class="history-clear-btn" id="historyClear" aria-label="Clear history" title="Clear history">Clear</button>
+        </div>
+        <ul class="history-list" id="historyList" aria-label="Recent calculations">
+          <li class="history-empty" id="historyEmpty">No calculations yet</li>
+        </ul>
+      </aside>
+
+    </div>
+
+    <!-- Keyboard Shortcut Hint -->
+    <div class="keyboard-hint" aria-hidden="true">
+      <span>⌨️ Keyboard supported</span>
+      <span class="hint-separator">•</span>
+      <span>Numbers, operators, Enter, Backspace, Escape</span>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <p class="footer-text">
+      Built with ❤️ by <strong>Rajad</strong> &mdash;
+      <span class="footer-highlight">Oasis Infobyte Internship 2026</span>
+      &mdash; Level 2, Task 1
+    </p>
+  </footer>
+
+  <!-- JavaScript (deferred for performance) -->
+  <script src="script.js" defer></script>
+</body>
+</html>
