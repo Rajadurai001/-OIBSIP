@@ -1,0 +1,244 @@
+/* ══════════════════════════════════════════════
+   AUTH SYSTEM — DESIGN TOKENS & SHARED STYLES
+   ══════════════════════════════════════════════ */
+:root {
+  --clr-bg:         #0b0d19;
+  --clr-surface:    rgba(18, 21, 42, .78);
+  --clr-surface-2:  rgba(26, 30, 56, .6);
+  --clr-border:     rgba(255, 255, 255, .06);
+  --clr-text:       #e2e4f0;
+  --clr-text-dim:   #7f83a2;
+  --clr-text-bright:#ffffff;
+  --clr-accent:     #7b6cf6;
+  --clr-accent-2:   #00d4aa;
+  --clr-green:      #00d4aa;
+  --clr-green-dim:  rgba(0,212,170,.12);
+  --clr-red:        #ff5e7a;
+  --clr-red-dim:    rgba(255,94,122,.08);
+  --clr-amber:      #f0c850;
+
+  --grad-accent: linear-gradient(135deg, #7b6cf6 0%, #00d4aa 100%);
+
+  --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+
+  --space-xs:  .35rem;
+  --space-sm:  .65rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.25rem;
+  --space-2xl: 3rem;
+
+  --radius-sm:  .5rem;
+  --radius-md:  .875rem;
+  --radius-lg:  1.25rem;
+  --radius-pill: 50rem;
+
+  --shadow-card: 0 8px 40px rgba(0,0,0,.4), 0 0 0 1px var(--clr-border);
+  --shadow-btn:  0 4px 20px rgba(123,108,246,.3);
+  --ease: cubic-bezier(.22,1,.36,1);
+  --dur: .35s;
+}
+
+/* ── RESET ─────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  font-family:var(--ff-sans);
+  background:var(--clr-bg);
+  color:var(--clr-text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-x:hidden;
+  position:relative;
+  padding:var(--space-lg);
+}
+a{color:var(--clr-accent);text-decoration:none;transition:color .25s}
+a:hover{color:var(--clr-accent-2)}
+ul{list-style:none}
+button,input{font-family:inherit;border:none;outline:none}
+button{cursor:pointer}
+
+/* ── BG ORBS ───────────────────────────────── */
+.bg-orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.28;pointer-events:none;z-index:0;will-change:transform}
+.bg-orb--1{width:420px;height:420px;background:#7b6cf6;top:-10%;left:-6%;animation:orb1 18s ease-in-out infinite alternate}
+.bg-orb--2{width:340px;height:340px;background:#00d4aa;bottom:-8%;right:-5%;animation:orb2 22s ease-in-out infinite alternate}
+.bg-orb--3{width:260px;height:260px;background:#ff5e7a;top:55%;left:60%;animation:orb3 20s ease-in-out infinite alternate}
+@keyframes orb1{to{transform:translate(55px,75px) scale(1.12)}}
+@keyframes orb2{to{transform:translate(-65px,-55px) scale(1.1)}}
+@keyframes orb3{to{transform:translate(-45px,38px) scale(1.18)}}
+
+/* ── LAYOUT ────────────────────────────────── */
+#app{position:relative;z-index:1;width:100%;max-width:440px;display:flex;flex-direction:column;gap:var(--space-lg);animation:fadeUp .6s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HEADER ────────────────────────────────── */
+.header{text-align:center}
+.logo{display:flex;align-items:center;justify-content:center;gap:var(--space-sm)}
+.logo__icon{font-size:1.7rem}
+.logo__text{font-size:1.6rem;font-weight:700;letter-spacing:-.03em}
+.logo__accent{background:var(--grad-accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header__subtitle{margin-top:var(--space-xs);font-size:.82rem;color:var(--clr-text-dim)}
+
+/* ── CARD ──────────────────────────────────── */
+.card{
+  background:var(--clr-surface);
+  backdrop-filter:blur(24px) saturate(1.3);
+  -webkit-backdrop-filter:blur(24px) saturate(1.3);
+  border:1px solid var(--clr-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);
+  padding:var(--space-2xl);
+  display:flex;flex-direction:column;gap:var(--space-lg);
+  transition:box-shadow var(--dur) var(--ease);
+}
+.card:hover{box-shadow:0 12px 50px rgba(0,0,0,.5),0 0 0 1px rgba(123,108,246,.12)}
+.card__header{display:flex;flex-direction:column;gap:var(--space-xs)}
+.card__badge{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .6rem;border-radius:var(--radius-pill);background:rgba(123,108,246,.14);color:var(--clr-accent);align-self:flex-start}
+.card__badge--green{background:var(--clr-green-dim);color:var(--clr-green)}
+.card__title{font-size:1.35rem;font-weight:700;color:var(--clr-text-bright);letter-spacing:-.02em}
+.card__desc{font-size:.82rem;color:var(--clr-text-dim);line-height:1.5}
+
+/* ── FORM ──────────────────────────────────── */
+.auth-form{display:flex;flex-direction:column;gap:var(--space-md)}
+
+.field{display:flex;flex-direction:column;gap:var(--space-xs)}
+.field__label{font-size:.78rem;font-weight:500;color:var(--clr-text-dim);letter-spacing:.03em}
+
+.field__wrap{position:relative;display:flex;align-items:center}
+.field__input{
+  width:100%;
+  padding:.82rem 1rem;
+  padding-right:3rem;
+  font-size:.92rem;font-weight:400;
+  color:var(--clr-text);
+  background:var(--clr-surface-2);
+  border:1.5px solid var(--clr-border);
+  border-radius:var(--radius-md);
+  transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.field__input::placeholder{color:var(--clr-text-dim);opacity:.45}
+.field__input:focus{border-color:var(--clr-accent);box-shadow:0 0 0 3px rgba(123,108,246,.16)}
+.field__input.is-invalid{border-color:var(--clr-red);box-shadow:0 0 0 3px rgba(255,94,122,.12)}
+.field__input.is-valid{border-color:var(--clr-green);box-shadow:0 0 0 3px rgba(0,212,170,.1)}
+
+/* Password toggle */
+.field__toggle{
+  position:absolute;right:.75rem;
+  background:none;border:none;cursor:pointer;
+  color:var(--clr-text-dim);
+  display:flex;align-items:center;justify-content:center;
+  padding:4px;border-radius:var(--radius-sm);
+  transition:color .2s,background .2s;
+}
+.field__toggle:hover{color:var(--clr-text);background:rgba(255,255,255,.06)}
+.field__toggle svg{width:18px;height:18px}
+
+/* Validation hint */
+.field__hint{font-size:.72rem;color:var(--clr-text-dim);transition:color .2s}
+.field__hint.is-error{color:var(--clr-red)}
+.field__hint.is-success{color:var(--clr-green)}
+
+/* Password strength bar */
+.pw-strength{display:flex;gap:4px;margin-top:2px}
+.pw-strength__bar{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.06);transition:background .3s}
+.pw-strength__bar.active-weak{background:var(--clr-red)}
+.pw-strength__bar.active-fair{background:var(--clr-amber)}
+.pw-strength__bar.active-good{background:var(--clr-green)}
+.pw-strength__bar.active-strong{background:var(--clr-accent)}
+
+/* ── GLOBAL ALERT ──────────────────────────── */
+.alert{
+  display:flex;align-items:flex-start;gap:var(--space-sm);
+  padding:var(--space-md);
+  border-radius:var(--radius-sm);
+  animation:alertIn .35s var(--ease);
+  font-size:.82rem;line-height:1.45;
+}
+.alert--error{background:var(--clr-red-dim);border:1px solid rgba(255,94,122,.2);color:var(--clr-red)}
+.alert--success{background:var(--clr-green-dim);border:1px solid rgba(0,212,170,.2);color:var(--clr-green)}
+.alert[hidden]{display:none}
+.alert__icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+@keyframes alertIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BUTTONS ───────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);
+  padding:.88rem;
+  font-size:.92rem;font-weight:600;
+  border-radius:var(--radius-md);
+  transition:transform .2s var(--ease),box-shadow var(--dur) var(--ease),background .3s,opacity .3s;
+}
+
+.btn--primary{
+  width:100%;color:#fff;
+  background:var(--grad-accent);
+  box-shadow:var(--shadow-btn);
+}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(123,108,246,.42)}
+.btn--primary:active{transform:translateY(0) scale(.98)}
+.btn--primary:disabled{opacity:.5;pointer-events:none}
+
+.btn--outline{
+  width:100%;color:var(--clr-red);
+  background:transparent;
+  border:1.5px solid rgba(255,94,122,.25);
+}
+.btn--outline:hover{background:var(--clr-red-dim);transform:translateY(-1px)}
+
+.btn--ghost{
+  color:var(--clr-text-dim);
+  padding:.5rem .8rem;font-size:.8rem;font-weight:500;
+  border-radius:var(--radius-pill);
+}
+.btn--ghost:hover{color:var(--clr-text);background:rgba(255,255,255,.06)}
+
+.btn svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── LINK BAR ──────────────────────────────── */
+.link-bar{text-align:center;font-size:.82rem;color:var(--clr-text-dim)}
+.link-bar a{font-weight:600}
+
+/* ══════════════════════════════════════════════
+   DASHBOARD-SPECIFIC
+   ══════════════════════════════════════════════ */
+.dash-header{display:flex;align-items:center;justify-content:space-between}
+.dash-header .logo{gap:var(--space-xs)}
+.dash-header .logo__text{font-size:1.2rem}
+
+.welcome{display:flex;flex-direction:column;gap:var(--space-xs);text-align:center}
+.welcome__greeting{font-size:1.6rem;font-weight:700;color:var(--clr-text-bright);letter-spacing:-.02em}
+.welcome__sub{font-size:.88rem;color:var(--clr-text-dim)}
+
+.dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)}
+.dash-stat{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:var(--space-lg) var(--space-md);
+  background:var(--clr-surface-2);
+  border:1px solid var(--clr-border);
+  border-radius:var(--radius-md);
+  transition:transform .3s var(--ease),border-color .3s;
+}
+.dash-stat:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.1)}
+.dash-stat__icon{font-size:1.5rem}
+.dash-stat__value{font-family:var(--ff-mono);font-size:1.3rem;font-weight:600;color:var(--clr-text-bright)}
+.dash-stat__label{font-size:.68rem;color:var(--clr-text-dim);text-transform:uppercase;letter-spacing:.08em}
+
+.session-info{
+  display:flex;flex-direction:column;gap:var(--space-xs);
+  padding:var(--space-md);
+  background:var(--clr-surface-2);
+  border:1px solid var(--clr-border);
+  border-radius:var(--radius-md);
+}
+.session-info__row{display:flex;justify-content:space-between;font-size:.78rem}
+.session-info__key{color:var(--clr-text-dim)}
+.session-info__val{color:var(--clr-text);font-family:var(--ff-mono);font-weight:500}
+
+/* ── RESPONSIVE ────────────────────────────── */
+@media(max-width:480px){
+  .card{padding:var(--space-xl)}
+  .dash-stats{grid-template-columns:1fr}
+}

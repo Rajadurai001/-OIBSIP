@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard — your protected area in SecureAuth.">
+  <title>Dashboard — SecureAuth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-orb bg-orb--1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--3" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- Top bar -->
+    <header class="dash-header">
+      <div class="logo">
+        <span class="logo__icon" aria-hidden="true">🔐</span>
+        <span class="logo__text">Secure<span class="logo__accent">Auth</span></span>
+      </div>
+      <button class="btn btn--ghost" id="logoutBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Logout</span>
+      </button>
+    </header>
+
+    <!-- Welcome card -->
+    <section class="card" aria-label="Dashboard">
+      <div class="card__header">
+        <span class="card__badge card__badge--green">PROTECTED</span>
+      </div>
+
+      <div class="welcome">
+        <p class="welcome__greeting" id="greetingText">Welcome back! 👋</p>
+        <p class="welcome__sub" id="userEmail">—</p>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <span class="dash-stat__icon" aria-hidden="true">🛡️</span>
+          <span class="dash-stat__value">SHA-256</span>
+          <span class="dash-stat__label">Hash Algorithm</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat__icon" aria-hidden="true">🔑</span>
+          <span class="dash-stat__value">Salted</span>
+          <span class="dash-stat__label">Password Storage</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat__icon" aria-hidden="true">🍪</span>
+          <span class="dash-stat__value">Session</span>
+          <span class="dash-stat__label">Auth Method</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat__icon" aria-hidden="true">✅</span>
+          <span class="dash-stat__value" id="statusValue">Active</span>
+          <span class="dash-stat__label">Session Status</span>
+        </div>
+      </div>
+
+      <div class="session-info">
+        <div class="session-info__row">
+          <span class="session-info__key">Logged in as</span>
+          <span class="session-info__val" id="infoEmail">—</span>
+        </div>
+        <div class="session-info__row">
+          <span class="session-info__key">Account created</span>
+          <span class="session-info__val" id="infoCreated">—</span>
+        </div>
+        <div class="session-info__row">
+          <span class="session-info__key">Session started</span>
+          <span class="session-info__val" id="infoLogin">—</span>
+        </div>
+      </div>
+
+      <button class="btn btn--outline" id="logoutBtn2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Sign Out</span>
+      </button>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      // ── Guard: redirect to login if not authenticated ──
+      if (!Auth.requireAuth()) return;
+
+      const user = Auth.getCurrentUser();
+      if (!user) { Auth.logout(); return; }
+
+      // ── Populate dashboard ──
+      function formatDate(iso) {
+        if (!iso) return '—';
+        const d = new Date(iso);
+        return d.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' })
+          + ' at ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+
+      function getGreeting() {
+        const hour = new Date().getHours();
+        if (hour < 12) return 'Good morning! ☀️';
+        if (hour < 17) return 'Good afternoon! 🌤️';
+        return 'Good evening! 🌙';
+      }
+
+      document.getElementById('greetingText').textContent = getGreeting();
+      document.getElementById('userEmail').textContent = user.email;
+      document.getElementById('infoEmail').textContent = user.email;
+      document.getElementById('infoCreated').textContent = formatDate(user.createdAt);
+      document.getElementById('infoLogin').textContent = formatDate(user.loginAt);
+
+      // ── Logout buttons ──
+      document.getElementById('logoutBtn').addEventListener('click', Auth.logout);
+      document.getElementById('logoutBtn2').addEventListener('click', Auth.logout);
+    })();
+  </script>
+</body>
+</html>

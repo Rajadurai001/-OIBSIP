@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your account — SecureAuth authentication system.">
+  <title>Login — SecureAuth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-orb bg-orb--1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--3" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo__icon" aria-hidden="true">🔐</span>
+        <h1 class="logo__text">Secure<span class="logo__accent">Auth</span></h1>
+      </div>
+      <p class="header__subtitle">Secure authentication system</p>
+    </header>
+
+    <!-- Login card -->
+    <section class="card" aria-label="Login form">
+      <div class="card__header">
+        <span class="card__badge">WELCOME BACK</span>
+        <h2 class="card__title">Sign in to your account</h2>
+        <p class="card__desc">Enter your credentials to access the dashboard</p>
+      </div>
+
+      <!-- Alert -->
+      <div class="alert" id="formAlert" hidden role="alert" aria-live="polite"></div>
+
+      <form id="loginForm" class="auth-form" novalidate autocomplete="off">
+        <!-- Email -->
+        <div class="field">
+          <label for="emailInput" class="field__label">Email Address</label>
+          <div class="field__wrap">
+            <input type="email" id="emailInput" class="field__input" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label for="passwordInput" class="field__label">Password</label>
+          <div class="field__wrap">
+            <input type="password" id="passwordInput" class="field__input" placeholder="Enter your password" required>
+            <button type="button" class="field__toggle" id="pwToggle" aria-label="Show password"></button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary" id="loginBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          <span>Sign In</span>
+        </button>
+      </form>
+    </section>
+
+    <p class="link-bar">Don't have an account? <a href="register.html">Create one</a></p>
+  </main>
+
+  <script src="auth.js"></script>
+  <script>
+    (() => {
+      'use strict';
+      // Redirect if already logged in
+      Auth.requireGuest();
+
+      Auth.setupPasswordToggle('passwordInput', 'pwToggle');
+
+      const form     = document.getElementById('loginForm');
+      const email    = document.getElementById('emailInput');
+      const password = document.getElementById('passwordInput');
+
+      // Clear error on input
+      [email, password].forEach(el => {
+        el.addEventListener('input', () => {
+          Auth.hideAlert('formAlert');
+          el.classList.remove('is-invalid');
+        });
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        Auth.hideAlert('formAlert');
+
+        const emailVal    = email.value.trim();
+        const passwordVal = password.value;
+
+        // Basic empty check
+        if (!emailVal || !passwordVal) {
+          Auth.showAlert('formAlert', 'Please enter both email and password.', 'error');
+          if (!emailVal) email.classList.add('is-invalid');
+          if (!passwordVal) password.classList.add('is-invalid');
+          return;
+        }
+
+        const result = await Auth.login(emailVal, passwordVal);
+
+        if (result.ok) {
+          // Brief success flash then redirect
+          Auth.showAlert('formAlert', 'Login successful! Redirecting…', 'success');
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+        } else {
+          Auth.showAlert('formAlert', result.msg, 'error');
+          email.classList.add('is-invalid');
+          password.classList.add('is-invalid');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
